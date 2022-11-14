@@ -32,8 +32,33 @@ const app = new Vue({
     timeSlider: 1.5 * 1000,
     direction: 1,
     activeIndex: 0,
-    idInterval: "null",
+    idInterval: "0",
     isAutoplayActive: true,
   },
-  methods: {},
+  methods: {
+    moveSlide(direction) {
+      if (direction > 0) {
+        this.activeIndex++;
+        if (this.activeIndex === this.arrImages.length) {
+          this.activeIndex = 0;
+        }
+      } else {
+        if (this.activeIndex === 0) {
+          this.activeIndex = this.arrImages.length;
+        }
+        this.activeIndex--;
+      }
+    },
+
+    startAutoplay() {
+      this.idInterval = setInterval(
+        () => moveSlide(this.direction),
+        this.timeSlider
+      );
+    },
+
+    stopAutoplay() {
+      clearInterval(idInterval);
+    },
+  },
 });
