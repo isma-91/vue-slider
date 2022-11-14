@@ -29,7 +29,7 @@ const app = new Vue({
       },
     ],
     start_and_stop: "Avvia Autoscorrimento",
-    timeSlider: 1.5 * 1000,
+    timeSlider: 3 * 1000,
     direction: 1,
     activeIndex: 0,
     idInterval: 0,
