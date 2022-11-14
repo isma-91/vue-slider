@@ -23,6 +23,14 @@
   <div id="root">
     <div class="container">
       <div class="slider">
+        <div class="buttons">
+          <div class="btn-up" @click='moveSlide(-1)'>
+            <i class="arrow-up fa-solid fa-circle-chevron-up"></i>
+          </div>
+          <div class="btn-down" @click='moveSlide(1)'>
+            <i class="arrow-down fa-solid fa-circle-chevron-down"></i>
+          </div>
+        </div>
         <img @mouseenter="stopAutoplay" @mouseleave="restartHover" :src="'img/' + objImg.image" :alt="objImg.title"
           v-for="(objImg, index) in arrImages" :key="objImg.name" :class="{active: index === activeIndex}"
           class="slider-img">
@@ -34,16 +42,9 @@
       </div>
 
       <div class="thumbs">
-        <img :src="'img/' + objImg.image" :alt="objImg.title" v-for="(objImg, index) in arrImages" :key="objImg.name"
-          :class="{active: index === activeIndex}" class="thumb-img">
-        <div class="buttons">
-          <div class="btn-up" @click='moveSlide(-1)'>
-            <i class="arrow-up fa-solid fa-circle-chevron-up"></i>
-          </div>
-          <div class="btn-down" @click='moveSlide(1)'>
-            <i class="arrow-down fa-solid fa-circle-chevron-down"></i>
-          </div>
-        </div>
+        <img @click="activeIndex = index;" :src="'img/' + objImg.image" :alt="objImg.title"
+          v-for="(objImg, index) in arrImages" :key="objImg.name" :class="{active: index === activeIndex}"
+          class="thumb-img">
       </div>
     </div>
 
