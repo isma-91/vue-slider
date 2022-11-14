@@ -23,8 +23,9 @@
   <div id="root">
     <div class="container">
       <div class="slider">
-        <img :src="'img/' + objImg.image" :alt="objImg.title" v-for="(objImg, index) in arrImages" :key="objImg.name"
-          :class="{active: index === activeIndex}" class="slider-img">
+        <img @mouseenter="stopAutoplay" @mouseleave="restartHover" :src="'img/' + objImg.image" :alt="objImg.title"
+          v-for="(objImg, index) in arrImages" :key="objImg.name" :class="{active: index === activeIndex}"
+          class="slider-img">
         <div class="info" v-for="(objImg, index) in arrImages" :key="objImg.name"
           :class="{active: index === activeIndex}" class="slider-img">
           <h2>{{ objImg.title }}</h2>
@@ -48,8 +49,8 @@
 
 
     <div class="container-btns">
-      <button class="stop">Ferma Autoscorrimento</button>
-      <button class="invert">Inverti l'ordine di scorrimento</button>
+      <button class="stop" @click="startAutoplay">Avvia Autoscorrimento</button>
+      <button class="invert" @click="invertDirection">Inverti l'ordine di scorrimento</button>
     </div>
   </div>
 

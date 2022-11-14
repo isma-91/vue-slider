@@ -32,7 +32,7 @@ const app = new Vue({
     timeSlider: 1.5 * 1000,
     direction: 1,
     activeIndex: 0,
-    idInterval: "0",
+    idInterval: 0,
     isAutoplayActive: true,
   },
   methods: {
@@ -52,13 +52,23 @@ const app = new Vue({
 
     startAutoplay() {
       this.idInterval = setInterval(
-        () => moveSlide(this.direction),
+        () => this.moveSlide(this.direction),
         this.timeSlider
       );
     },
 
     stopAutoplay() {
-      clearInterval(idInterval);
+      clearInterval(this.idInterval);
+    },
+
+    invertDirection() {
+      this.direction *= -1; // 1  * -1 = -1; -1 * -1 = 1
+    },
+
+    restartHover() {
+      if (this.isAutoplayActive) {
+        this.startAutoplay();
+      }
     },
   },
 });
